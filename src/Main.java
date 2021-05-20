@@ -13,15 +13,16 @@ public class Main {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                System.out.println(Thread.currentThread().getName() + " включает тумблер");
-                box.toggle = true;
-                count++;
+                if (!box.toggle) {
+                    System.out.println(Thread.currentThread().getName() + " включает тумблер");
+                    box.toggle = true;
+                    count++;
+                }
             }
         };
 
         Runnable taskDown = () -> {
-            while (!Thread.currentThread().isInterrupted()) {
+            while (!Thread.currentThread().isInterrupted()){
                 if (box.toggle) {
                     System.out.println(Thread.currentThread().getName() + " выключает тумблер");
                     box.toggle = false;
